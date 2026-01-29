@@ -1,0 +1,11 @@
+name: npm-build
+description: Build application using npm
+inputs: {}
+runs:
+  using: composite
+  steps:
+    - name: Intent - Build application
+      run: |
+        echo "INTENT: Build application"
+        echo "Expected command: npm run build"
+      shell: bash

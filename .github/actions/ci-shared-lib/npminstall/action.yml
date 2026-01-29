@@ -1,0 +1,18 @@
+name: 'npm-install'
+description: 'Intent-only Node.js setup (logs requested version, does not install)'
+inputs:
+  version:
+    description: 'Requested Node.js version'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Log intent to setup Node.js runtime
+      run: echo "INTENT: Setup Node.js runtime"
+      shell: bash
+    - name: Log requested Node.js version
+      run: echo "Requested Node.js version: ${{ inputs.version }}"
+      shell: bash
+    - name: Log installation skipped note
+      run: echo "NOTE: Actual installation skipped (Windows-safe intent mode)"
+      shell: bash

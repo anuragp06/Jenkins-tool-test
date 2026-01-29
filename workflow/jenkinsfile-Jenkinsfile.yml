@@ -1,0 +1,42 @@
+name: CI Pipeline
+on:
+  workflow_dispatch:
+    inputs:
+      ENV:
+        description: Target environment
+        required: false
+        default: dev
+      RUN_TESTS:
+        description: Run tests
+        required: false
+        type: boolean
+        default: true
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Checkout
+      run: echo "Check out the source code from the repository."
+    - name: Setup
+      run: echo "Set up Node.js version 18 for the build environment."
+    - name: Install Dependencies
+      run: echo "Install project dependencies using npm."
+    - name: Build
+      run: echo "Build the application using npm."
+    - name: Test
+      run: echo "Run tests if the RUN_TESTS parameter is true."
+      if: ${{ github.event.inputs.RUN_TESTS }}
+    - name: Docker Build & Push
+      run: echo "Build a Docker image and push it to the specified registry."
+    - name: Deploy
+      run: echo "Deploy the application to the target environment."
+    - name: Notify pipeline completion
+      if: always()
+      run: echo "Send a notification that the pipeline has completed"
+    - name: Notify pipeline success
+      if: success()
+      run: echo "Send a notification that the pipeline has succeeded"
+    - name: Notify pipeline failure
+      if: failure()
+      run: echo "Send a notification that the pipeline has failed"

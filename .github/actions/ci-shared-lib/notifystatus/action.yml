@@ -1,0 +1,21 @@
+name: Notify Status
+description: Prints a formatted pipeline status message.
+inputs:
+  message:
+    description: The status message to display.
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Print status header
+      run: echo "------------------------------------"
+      shell: bash
+    - name: Print PIPELINE STATUS
+      run: echo "PIPELINE STATUS"
+      shell: bash
+    - name: Print message
+      run: echo "${{ inputs.message }}"
+      shell: bash
+    - name: Print status footer
+      run: echo "------------------------------------"
+      shell: bash

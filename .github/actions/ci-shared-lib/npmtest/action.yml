@@ -1,0 +1,15 @@
+name: npmTest
+description: Execute test suite with npm test (intent only, no execution)
+inputs: {}
+runs:
+  using: composite
+  steps:
+    - name: Intent - Execute test suite
+      run: echo "INTENT: Execute test suite"
+      shell: bash
+    - name: Expected command
+      run: echo "Expected command: npm test"
+      shell: bash
+    - name: Note about skipping tests
+      run: echo "Tests may be skipped based on pipeline parameters"
+      shell: bash
